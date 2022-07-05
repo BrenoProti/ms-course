@@ -1,12 +1,9 @@
 package com.proti.hrworker.controller;
 
 import com.proti.hrworker.model.entities.Worker;
-import com.proti.hrworker.repositories.WorkerRepository;
 import com.proti.hrworker.service.WorkerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
