@@ -12,7 +12,6 @@ public class PaymentService {
 
     private final WorkerClient workerClient;
 
-
     public Payment getPayment(Long workerId, Integer days) {
         Worker worker = this.workerClient.findById(workerId).getBody();
         assert worker != null;

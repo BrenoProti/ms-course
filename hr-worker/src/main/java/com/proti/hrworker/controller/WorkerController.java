@@ -4,6 +4,10 @@ import com.proti.hrworker.model.entities.Worker;
 import com.proti.hrworker.repositories.WorkerRepository;
 import com.proti.hrworker.service.WorkerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +18,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping(value = "/workers")
 public class WorkerController {
+
+    private final Environment env;
 
     private final WorkerService service;
 
@@ -26,6 +33,7 @@ public class WorkerController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Worker> findById(@PathVariable("id") Long id) {
+        log.info("PORT ".concat(env.getProperty("local.server.port")));
         return ResponseEntity.ok(service.findById(id));
     }
 }
