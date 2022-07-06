@@ -4,6 +4,7 @@ import com.proti.hrworker.model.entities.Worker;
 import com.proti.hrworker.service.WorkerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ import java.util.List;
 @RequestMapping(value = "/workers")
 public class WorkerController {
 
+    @Value("${test.config}")
+    private String testConfig;
+
     private final Environment env;
 
     private final WorkerService service;
@@ -32,5 +36,11 @@ public class WorkerController {
     public ResponseEntity<Worker> findById(@PathVariable("id") Long id) {
         log.info("PORT ".concat(env.getProperty("local.server.port")));
         return ResponseEntity.ok(service.findById(id));
+    }
+
+    @GetMapping(value = "/config")
+    public ResponseEntity<String> config() {
+        log.info("config = " + testConfig);
+        return ResponseEntity.ok(testConfig);
     }
 }
