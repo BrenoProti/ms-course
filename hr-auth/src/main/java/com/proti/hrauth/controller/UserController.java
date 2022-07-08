@@ -1,31 +1,23 @@
-package com.example.hruser.controller;
+package com.proti.hrauth.controller;
 
-import com.example.hruser.model.entity.User;
-import com.example.hruser.service.UserService;
+import com.proti.hrauth.model.entity.User;
+import com.proti.hrauth.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j
-@RequestMapping(value = "/users")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService service;
 
-    @GetMapping(value = "/email")
+    @GetMapping("/email")
     public ResponseEntity<User> findByEmail(@RequestParam String email) {
         return ResponseEntity.ok(service.findByEmail(email));
-    }
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(service.findById(id));
     }
 }
